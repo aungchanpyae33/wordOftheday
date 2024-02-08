@@ -26,12 +26,15 @@ async function getDataAndAction() {
       if (item.textContent === "Delete") {
         deleteWord();
       }
-      if (item.textContent.length === 1) {
-        clickWord(item.textContent);
-      }
 
       if (item.textContent === "Enter" && !text.includes("")) {
         enterClick(fetchData);
+      }
+      if (word > 4) {
+        return;
+      }
+      if (item.textContent.length === 1) {
+        clickWord(item.textContent);
       }
     });
   });
@@ -47,9 +50,11 @@ function deleteWord() {
   document.querySelector(` .row${row} .cell${word}`).textContent = text[word];
   return;
 }
+
 function clickWord(event) {
   text[word] = event;
-  document.querySelector(` .row${row} .cell${word}`).textContent = text[word];
+  console.log(row, word);
+  document.querySelector(`.row${row} .cell${word}`).textContent = text[word];
   word++;
 }
 let alphabetArray = [
